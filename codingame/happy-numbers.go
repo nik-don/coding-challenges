@@ -1,7 +1,7 @@
 /*
 Happy Numbers
 
-This puzzle was confusing as I didn't understand the problem statementn as it was
+This puzzle was confusing as I didn't understand the problem statement as it was
 written in a way to make it challenging.
 The trick is to understand that sum of squares of digits needs to be calculated
 each time, and the result of that calculation is used as the input for the next
