@@ -64,7 +64,7 @@ func calcHappy(n int) {
 	}
 
 	for i, v := range arr {
-		fmt.Printf("%d", v)
+		fmt.Printf(v)
 		if i < len(arr)-1 {
 			fmt.Printf(" ")
 		}
