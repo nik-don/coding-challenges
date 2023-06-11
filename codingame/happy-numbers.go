@@ -6,6 +6,7 @@ written in a way to make it challenging.
 The trick is to understand that sum of squares of digits needs to be calculated
 each time, and the result of that calculation is used as the input for the next
 calculation. The program ends when the result of the calculation is either 1 or
+a sum has already been seen before (To stop from going in a loop). The sum could be
 the original number.
 If the result is 1, then the number is happy, otherwise it is sad.
 
@@ -40,7 +41,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"strconv"
 )
 
@@ -53,14 +53,20 @@ func main() {
 }
 
 func calcHappy(n int) {
-	original := n
 	var arr []int
+	seen := make(map[int]bool)
+
 	for {
 		n = sumOfSquares(n)
-		arr = append(arr, n)
-		if n == 1 || n == original {
+		if n == 1 {
+			arr = append(arr, 1)
 			break
 		}
+		if seen[n] {
+			break
+		}
+		arr = append(arr, n)
+		seen[n] = true
 	}
 
 	for i, v := range arr {
@@ -74,11 +80,11 @@ func calcHappy(n int) {
 }
 
 func sumOfSquares(n int) int {
-	var sum float64
+	var sum int
 
 	for _, n := range strconv.Itoa(n) {
 		num, _ := strconv.Atoi(string(n))
-		sum += math.Pow(float64(num), 2)
+		sum += num * num
 	}
-	return int(sum)
+	return sum
 }
